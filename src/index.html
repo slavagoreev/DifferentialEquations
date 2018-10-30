@@ -3,10 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Differential equations course project</title>
+    <link rel="stylesheet" href="/katex/katex.min.css"
+          integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
 </head>
 <body>
-<h1>Test!!</h1>
 
-<script src="bundle.js"></script>
+<div class="main">
+    <div class="navbar-extended">
+        <nav class="navbar navbar-expand main-nav">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    Differential Equations
+                </a>
+                <div class="collapse navbar-collapse">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="/">
+                            Graphs
+                        </a>
+                        <a class="nav-item nav-link" href="/report">
+                            Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="page">
+        <div class="container">
+            <div class="row">
+                <div class="content">
+                    <p class="math">
+                        We were given an equation $y'=xy^2-3xy$
+                        and inital values $x_0=0$, $y_0=2$
+                        and $X=6.4$
+                    </p>
+                    <p>
+                        This is a first order separable ODE that has a general solution in from of:
+                        <span class="math block">
+                            $y=-\frac{3}{e^{C+\frac{3x^2}{2}}-1}$
+                        </span>
+                    </p>
+                    <p>
+                        Let's build an approximation using:
+                    </p>
+                    <ol>
+                        <li>Euler's method</li>
+                        <li>Improved Euler's method</li>
+                        <li>Runge-Kutta method</li>
+                    </ol>
+                    <canvas id="euler" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

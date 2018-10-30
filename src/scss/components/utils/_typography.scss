@@ -1,0 +1,370 @@
+@import "variables";
+@import "mixins";
+
+// SF UI Display
+// -------------------
+
+// Light
+@font-face {
+  font-family: 'San Francisco';
+  src: url('#{$font-path}SF-UI-Display-Light.woff') format('woff');
+  font-style:   normal;
+  font-weight:  200;
+}
+
+// Regular
+@font-face {
+  font-family: 'San Francisco';
+  src: url('#{$font-path}SF-UI-Display-Regular.woff') format('woff'),
+  url('#{$font-path}SF-UI-Display-Regular.ttf')  format('truetype');
+  font-style:   normal;
+  font-weight:  400;
+}
+
+// Medium
+@font-face {
+  font-family: 'San Francisco';
+  src: url('#{$font-path}SF-UI-Display-Medium.woff') format('woff'), /* Modern Browsers */
+  url('#{$font-path}SF-UI-Display-Medium.ttf')  format('truetype');
+  font-style:   normal;
+  font-weight:  500;
+}
+
+a {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.header {
+  width: 100%;
+  display: inline-block;
+  @include text(22px, 600);
+
+  a {
+    color: mix($primary, $fontColor, 40%);
+    text-decoration: none;
+  }
+}
+
+.mdi::before {
+  font-size: 24px;
+  line-height: 14px;
+}
+.btn {
+  .mdi {
+    display: inline-block;
+    float: left;
+    margin-right: 3px;
+  }
+  &.btn-sm {
+    .mdi:before {
+       line-height: inherit;
+      font-size: 20px !important;
+    }
+  }
+}
+.dropdown-menu .mdi {
+  width: 18px;
+}
+.dropdown-menu .mdi::before {
+  position: relative;
+  top: 4px;
+  left: -8px;
+}
+.nav .mdi::before {
+  position: relative;
+  top: 4px;
+}
+.navbar .navbar-toggle .mdi::before {
+  position: relative;
+  top: 4px;
+  color: #FFF;
+}
+.breadcrumb .mdi::before {
+  position: relative;
+  top: 4px;
+}
+.breadcrumb a:hover {
+  text-decoration: none;
+}
+.breadcrumb a:hover span {
+  text-decoration: underline;
+}
+.alert .mdi::before {
+  position: relative;
+  top: 4px;
+  margin-right: 2px;
+}
+.input-group-addon .mdi::before {
+  position: relative;
+  top: 3px;
+}
+.navbar-brand .mdi::before {
+  position: relative;
+  top: 2px;
+  margin-right: 2px;
+}
+.list-group-item .mdi::before {
+  position: relative;
+  top: 3px;
+  left: -3px
+}
+
+/*------------------------------------*\
+    # Type
+\*------------------------------------*/
+
+// Make type normal across browsers
+html, body {
+  font-size: $base-font-size;
+  font-family: $font-family;
+  letter-spacing: $base-font-letter-spacing;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+
+// Headers
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 $header-margin 0;
+  line-height: $header-line-height;
+  font-weight: 400;
+}
+
+h1, h2, h3 {
+  letter-spacing: .3px;
+}
+
+h1 { font-size: $header-size; font-weight: 700; }
+h2 { font-size: $header-size / 1.25; font-weight: 600; }
+h3 { font-size: $header-size / 1.5; font-weight: 600; }
+h4 { font-size: $header-size / 1.85; }
+h5 { font-size: $header-size / 2.1; }
+h6 { font-size: $header-size / 2.45; }
+
+@media (max-width: 768px) {
+
+  h1 { font-size: $header-mobile; font-weight: 700; }
+  h2 { font-size: $header-mobile / 1.25; font-weight: 600; }
+  h3 { font-size: $header-mobile / 1.5; font-weight: 600; }
+  h4 { font-size: $header-mobile / 1.85; }
+  h5 { font-size: $header-mobile / 2.1; }
+  h6 { font-size: $header-mobile / 2.45; }
+}
+
+// Paragraphs
+p {
+  margin-top: $paragraph-margin;
+  font-size: $paragraph-size;
+  line-height: $paragraph-line-height;
+  color: $paragraph-color;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+a {
+  cursor: pointer !important;
+}
+small {
+  font-size: 0.85em;
+  line-height: 1.6;
+  display: block;
+}
+.content-block {
+  margin-bottom: 20px;
+
+  // Links
+  a {
+    color: $primary;
+    text-decoration: none;
+    @include transition(all .2s ease);
+
+    &:hover {
+      color: darken($primary, 10%);
+    }
+  }
+
+
+  // Lists
+  ul, ol {
+    margin: $paragraph-margin 0 0 20px;
+
+    li {
+      margin-top: 10px;
+      line-height: $paragraph-line-height;
+      color: $paragraph-color;
+    }
+
+    ul, ol {
+      margin-top: 0;
+    }
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+
+    li {
+      list-style: decimal;
+    }
+  }
+
+
+  // hr
+  hr {
+    height: 1px;
+    margin: $hr-margin 0;
+    border: none;
+    background-color: $border-color;
+  }
+
+
+  // Blockquote
+  blockquote {
+    margin: $blockquote-margin 0;
+    font-size: $blockquote-size;
+    line-height: $blockquote-line-height;
+    color: $blockquote-color;
+    text-align: center;
+    font-style: italic;
+  }
+
+
+  // Tables
+  table {
+    width: 100%;
+    margin: $blockquote-margin 0;
+    border-collapse: collapse;
+  }
+
+  table, td, th {
+    border: 1px solid $border-color;
+    text-align: left;
+  }
+
+  th {
+    font-weight: $font-weight-bold;
+  }
+
+  th, td {
+    padding: 15px;
+  }
+
+
+  // Figure
+  figure {
+    margin: $blockquote-margin 0;
+
+    img {
+      margin: 0;
+    }
+  }
+
+  figcaption {
+    margin-top: 10px;
+    color: lighten($paragraph-color, 10%);
+    font-size: $paragraph-margin * 0.8;
+  }
+}
+
+
+
+// Code
+pre {
+  display: block;
+  margin: 0 0 40px 0;
+  padding: 20px;
+  background-color: lighten($border-color, 12%);
+  border: 1px solid $border-color;
+  overflow: auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+  code {
+    position: static;
+    padding: 0;
+    border: none;
+    line-height: 1.5em;
+  }
+}
+
+code {
+  position: relative;
+  top: -0.2em;
+  padding: 3px;
+  font-family: 'Source Code Pro', monospace;
+  font-size: $paragraph-size / 1.4;
+  color: darken($border-color, 40%);
+  line-height: 1em;
+  pointer-events: none;
+  border: 1px solid $border-color;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+
+
+// Misc Styles
+em, i, .italic {
+  font-style: italic;
+}
+
+strong, b, .bold {
+  font-weight: $font-weight-bold;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.light-font {
+  font-weight: 300;
+}
+
+.cutted-text {
+  @extend .force-wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.force-wrap {
+  word-wrap: break-word;
+  word-break: break-all;
+  -ms-word-break: break-all;
+  hyphens: auto;
+}
+strong {
+  font-weight: 700;
+}
+.hover-underline {
+  font-size: inherit;
+  position: relative;
+  z-index: 1;
+}
+.hover-underline:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  left: 0;
+  background: $backgroundPrimary;
+  height: 2px;
+  z-index: -1;
+  @include transition(width .2s ease-in-out)
+}
+.hover-underline:hover:after {
+  width: 100%;
+}
+.abbr {
+  text-decoration: underline;
+  cursor: help;
+}

@@ -1,0 +1,120 @@
+@import "mixins";
+
+// flatuicolors.com
+
+// greens
+$lightGreen:    #4CD964;
+$nephritis:     #27ae60;
+$green:         #2ecc71;
+$turquoise:     #1abc9c;
+$darkGreen:     #16a085;
+
+// blues
+$lightBlue: #25b2fc;
+$blue:          #007AFF;
+$wetAsphalt:    #34495e;
+$midnightBlue:  #2c3e50;
+
+
+
+// oranges
+$yellow:        #FFCC00;
+$orange:        #ff9a1d;
+$red:           #e74c3c;
+$magenta:       #FF2D55;
+
+$lightPink:     #c37fe1;
+$purple:        #a770d7;
+$darkPurple:    #8859bf;
+$darkestPurple:  #7648bb;
+
+$white:         #F7F7F7;
+$lightestGray:  #dbdcdc;
+$lightGray:     #8E8E93;
+$gray:          #555555;
+$darkGray:      #3b3d3c;
+$darkenGray:    #363736;
+$darkestGray:   #2B2B2B;
+$black:         #1F1F21;
+
+
+$primary:       $purple;
+$primaryDark:   $darkestPurple;
+$secondary:     $blue;
+$secondaryDark: $darkestPurple;
+
+
+$fontColor:             $darkestGray;
+$backgroundPrimary:     $white;
+$backgroundSecondary:   $lightestGray;
+$borderColor:           darken($white, 3%);
+$shadowColor:           $lightestGray;
+
+$imagesPath:              "/img/";
+
+/*------------------------------------*\
+    # Simple Typography Settings
+\*------------------------------------*/
+
+// Font Family
+$font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', Arial;
+$font-path: '/fonts/SF_Display/';
+
+// Base Font for HTML
+$base-font-size               : 17px;
+$base-font-letter-spacing     : 0px;
+
+// Paragraph Styles
+$paragraph-color              : #3d3d3d;
+$paragraph-size               : 17px;
+$paragraph-line-height        : 1.5em;
+$paragraph-margin             : 12px;
+
+// Header Styles
+$header-color      : #000000;
+$header-size       : 40px;
+$header-mobile     : 32px;
+$header-line-height: 1.5em;
+$header-margin     : 8px;
+
+// Blockquote Styles
+$blockquote-color      : #505050;
+$blockquote-size       : 24px;
+$blockquote-line-height: 1.5em;
+$blockquote-margin     : $paragraph-margin * 1.5;
+
+// Links
+$link-color: #4eaff6;
+
+// hr
+$hr-margin: 30px;
+
+// Type Misc
+$font-weight-bold: 600;
+$border-color: #DADADA;
+
+
+$animation-deceleration-curve-timing-function: cubic-bezier(0, 0, .2, 1) !default;
+$animation-standard-curve-timing-function: cubic-bezier(.4, 0, .2, 1) !default;
+$animation-acceleration-curve-timing-function: cubic-bezier(.4, 0, 1, 1) !default;
+$animation-sharp-curve-timing-function: cubic-bezier(.4, 0, .6, 1) !default;
+
+
+
+// The default animation curves used by material design.
+$linear-out-slow-in-timing-function: cubic-bezier(0, 0, 0.2, 0.1) !default;
+$fast-out-slow-in-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$fast-out-linear-in-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
+
+
+// The default duration value for elevation transitions.
+$elevation-transition-duration: 280ms !default;
+
+// The default color for elevation shadows.
+$elevation-color: black !default;
+
+// The default opacity scaling value for elevation shadows.
+$elevation-opacity: 1 !default;
+
+
+$elevation-transition-timing-function: $fast-out-slow-in-timing-function;

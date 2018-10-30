@@ -1,5 +1,6 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -12,20 +13,10 @@ module.exports = {
     devtool: 'inline-source-map',
     mode: 'development',
     devServer: {
+        // publicPath: './src/assets',
         contentBase: path.resolve(__dirname, 'dist'),
         watchContentBase: true,
-        hot: true,
-        onCompile(compiler, server) {
-            const watchFiles = ['.html', '.hbs'];
-            const changedFiles = Object.keys(compiler.watchFileSystem.watcher.mtimes);
-
-            if (
-                this.hot &&
-                changedFiles.some(filePath => watchFiles.includes(path.parse(filePath).ext))
-            ) {
-                server.sockWrite(server.sockets, "content-changed");
-            }
-        }
+        hot: true
     },
     plugins: [
         new ManifestPlugin(),
@@ -35,6 +26,7 @@ module.exports = {
             filename: 'index.html',
             template: 'src/index.html',
         }),
+        new CopyWebpackPlugin([ { from: 'src/assets', to: './' } ]),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],

@@ -1,0 +1,89 @@
+@import "utils";
+
+.btn {
+  background: transparent;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1rem !important;
+  border: 2px solid $lightestGray;
+  padding: 0.375rem 20px;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #656565 !important;
+
+  &:hover, &:focus {
+    color: $gray;
+    border-color: $lightGray;
+    outline: 0;
+    background: rgba(255, 255, 255, 0.11);
+  }
+  &:active {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  &.btn-primary {
+    color: $primary !important;
+    border-color: $primary;
+
+    &:hover, &:focus {
+      color: $primaryDark !important;
+      border-color: $primaryDark !important;
+      background: none !important;
+    }
+    &:active {
+      background: transparentize($primary, 0.95) !important;
+    }
+  }
+  &.btn-secondary {
+    color: lighten($secondary, 5%) !important;
+    border-color: lighten($secondary, 5%);
+
+    &:hover, &:focus, &:active {
+      color: darken($secondary, 5%) !important;
+      border-color: darken($secondary, 5%) !important;
+      background: none !important;
+    }
+
+    &:active {
+      background: transparentize($secondary, 0.95) !important;
+    }
+  }
+  &.btn-sm {
+    font-size: 0.875rem !important;
+    padding: 0.275rem 15px;
+    border-width: 1px;
+  }
+  &[disabled], &.disabled {
+    border-color: $lightGray !important;
+    color: $gray !important;
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: transparentize($gray, 0.95) !important;
+
+    &:hover, &:focus, &:active {
+      border-color: $lightGray !important;
+      color: $gray !important;
+      background: transparentize($gray, 0.95) !important;
+    }
+  }
+}
+.btn-group,
+.btn-group-vertical {
+  margin: 10px 0;
+
+  > .btn {
+    z-index: 0;
+
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 1;
+      border-color: $primary;
+      color: $primaryDark !important;
+      background: transparentize($primary, 0.95) !important;
+    }
+    &:hover {
+      border-color: mix($lightestGray, $primaryDark) !important;
+      background: transparentize($primary, 0.95) !important;
+    }
+  }
+}

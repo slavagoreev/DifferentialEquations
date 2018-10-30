@@ -1,0 +1,8 @@
+@import "./utils/mixins";
+
+@for $elevation from 1 through 24 {
+  .elevation-#{$elevation} {
+    @include elevation($elevation);
+  }
+}
+

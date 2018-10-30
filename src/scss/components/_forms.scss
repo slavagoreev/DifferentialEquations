@@ -1,0 +1,138 @@
+@import "utils";
+
+$inputBG: mix($backgroundPrimary, #fff);
+
+.form-group {
+  position: relative;
+  margin: 20px 0 22px;
+
+  label {
+    position: absolute;
+    line-height: 1;
+    font-size: 13px;
+    font-weight: 600;
+    top: -5px;
+    padding: 0 5px;
+    left: 15px;
+    color: $lightGray;
+    background: linear-gradient(#fff, $inputBG);
+
+    @include transition(all .1s ease);
+  }
+}
+
+.form-control {
+  background: $inputBG;
+  font-size: 16px;
+  font-weight: 500;
+  border: 2px solid $borderColor;
+  border-radius: 4px;
+  line-height: 36px !important;
+  padding: 4px 35px 2px 15px !important;
+  height: 46px !important;
+  box-shadow: none !important;
+  background-image: none !important;
+
+  @include transition(all .3s ease);
+
+  &:hover, &.hover {
+    border-color: mix($primary, $backgroundSecondary);
+  }
+  &:focus, &.focus {
+    background: none;
+    box-shadow: none;
+    border-color: $primary;
+    background: #fff;
+  }
+
+  &.is-invalid {
+    border-color: #dc3545 !important;
+
+    & + label {
+      color: #dc3545 !important;
+    }
+  }
+}
+.checkbox {
+  display: flex;
+  max-width: 80%;
+}
+
+input[type=checkbox] {
+  display: none; // Hide ugly checkbox
+
+  &:checked + label .mdi.checked, &.checked + label .mdi.checked {
+    display: inline-block;
+    color: $secondary !important;
+  }
+  &:checked + label .mdi.unchecked, &.checked + label .mdi.unchecked {
+    display: none;
+  }
+  & + label {
+    cursor: pointer;
+    padding: 0 0 0 34px;
+    margin-bottom: 0;
+    font-size: 15px;
+    min-height: 28px;
+    line-height: 1.5;
+    position: relative;
+
+    .mdi {
+      font-size: 22px;
+      font-weight: 400;
+      padding: 3px 5px 3px 0;
+      line-height: 22px;
+      letter-spacing: 1px;
+      position: absolute;
+      color: $lightGray;
+      left: 0;
+      top: 0;
+    }
+    .mdi.checked {
+      display: none;
+    }
+    &:hover .mdi.unchecked {
+      color: mix($secondary, $lightGray);
+    }
+
+  }
+}
+
+.form-control:focus + label, .form-control.focus + label {
+  color: transparentize(mix($gray, $darkestPurple), 0.2);
+  background: linear-gradient(#fff, #fff);
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $lightGray !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $lightGray !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: $lightGray !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: $lightGray !important;
+}
+
+.suffix {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  cursor: help;
+}
+
+.suffix .mdi {
+  font-size: 22px;
+  opacity: 0.8;
+  color: darken($green, 10%);
+  padding: 9px;
+}
+
+.suffix .mdi.error {
+  color: #dc3545;
+}
+[id^=__lpform] {
+  display: none !important;
+}

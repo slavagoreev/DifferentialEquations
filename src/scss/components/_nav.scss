@@ -1,0 +1,142 @@
+@import "utils";
+
+nav {
+  position: relative;
+  width: 100%;
+
+  .container {
+    padding: 0 15px !important;
+    z-index: 17;
+    position: relative;
+  }
+  .navbar-brand {
+    margin-top: -4px;
+    padding: 0;
+    position: relative;
+    width: 190px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    flex-basis: 190px;
+    flex-shrink: 0;
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+      position: relative;
+      display: inline-block;
+
+      img {
+        margin: 0;
+        @include transition(transform .5s ease-out);
+      }
+    }
+    .logo-text {
+      color: $primary;
+      font-size: 22px;
+      line-height: 36px;
+      display: inline-block;
+      letter-spacing: .7px;
+      opacity: .9;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      @include linear-gradient(50deg, $primary, $secondary);
+      @include transition(opacity .2s ease-in);
+    }
+    &:hover {
+      img {
+        @include transform(rotate(120deg) scale(1.1));
+      }
+      .logo-text {
+        opacity: 1;
+      }
+    }
+  }
+  .navbar-nav {
+    .nav-link {
+      color: $gray;
+      font-weight: 500;
+      @include transition(opacity .2s ease-in);
+      opacity: .8;
+      white-space: nowrap;
+
+      &:hover, &:focus {
+        opacity: 1;
+      }
+
+      &.disabled {
+        color: $lightestGray;
+      }
+    }
+
+    .active > .nav-link,
+    .nav-link.active {
+      color: $darkPurple;
+      font-weight: 700;
+    }
+  }
+}
+
+.navbar-extended {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  @include elevation(16, $backgroundSecondary);
+  background: transparentize($backgroundPrimary, 0.03);
+  height: 80px;
+  z-index: 16;
+
+  .main-nav {
+    height: 80px;
+    background: $backgroundPrimary;
+    z-index: 17;
+  }
+
+  &.sticky {
+    .navbar-extended__overlay {
+      @include transition(opacity .35s ease-in);
+    }
+    .nav-item, .navbar-extension__brand {
+      opacity: 0;
+      animation-name: menuItemAnimation;
+    }
+    .logo {
+      opacity: 0.8;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-extended {
+    height: 60px;
+    @include elevation(10, $backgroundSecondary);
+
+    .main-nav {
+      height: 60px;
+    }
+    .navbar-brand {
+
+      .ctf-logo {
+        transform: scale(0.075) !important;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+        margin-top: -5px;
+      }
+
+      .logo-text {
+        margin-left: -15px !important;
+        font-size: 20px !important;
+        margin-top: 2px;
+      }
+    }
+  }
+}

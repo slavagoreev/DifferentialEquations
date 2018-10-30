@@ -1,0 +1,18 @@
+aside {
+  ul {
+    list-style: none;
+  }
+}
+.side-menu {
+  position: sticky;
+  margin-top: 64px;
+  list-style: none;
+  line-height: 32px;
+
+  &__item {
+
+    &.active {
+      font-weight: 600;
+    }
+  }
+}
