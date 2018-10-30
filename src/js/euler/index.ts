@@ -1,14 +1,17 @@
 import * as Chart from 'chart.js';
 import { IMethod, IMethodOptions } from '../models/method.model';
 import { ChartOptions } from 'chart.js';
+import { ChartDataSets } from 'chart.js';
 
 export class EulerMethod implements IMethod {
-    xCoords: number[] = [];
-    yCoords: number[] = [];
+    public xCoords: number[] = [];
+    public yCoords: number[] = [];
+    public chart: Chart = null;
 
     equation: (x: number, y: number) => number;
     options: IMethodOptions = {
         displayName: 'Euler\'s method',
+        chartName: 'eulerChart',
         initialValues: { x: 0, y: 0 },
         minimum: 0,
         maximum: 1,
@@ -18,7 +21,7 @@ export class EulerMethod implements IMethod {
     constructor(equation: (x: number, y: number) => number, options?: IMethodOptions) {
         this.equation = equation;
         if (options)
-            this.options = options;
+            this.options = {...this.options, ...options};
     }
     public compute(interval: { start: number; end: number; }, step: number) {
         for (let i = interval.start; i <= interval.end; i += step) {
@@ -36,7 +39,7 @@ export class EulerMethod implements IMethod {
         return this as EulerMethod;
     };
 
-    private findBoundaries() {
+    protected findBoundaries() {
         this.yCoords.forEach((num, i) => {
             if (num > this.options.maximum) {
                 this.options.maximum = num;
@@ -51,14 +54,12 @@ export class EulerMethod implements IMethod {
     }
 
     public draw(ctx: any, options: ChartOptions) {
-        let y;
-        console.log(this.yCoords);
         const chart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: this.xCoords.map((num) => num.toFixed(1)),
                 datasets: [{
-                    label: 'My First dataset',
+                    label: this.options.displayName,
                     backgroundColor: `#8859bf`,
                     borderColor: `#a770d7`,
                     data: this.yCoords,
@@ -67,24 +68,27 @@ export class EulerMethod implements IMethod {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 title: {
                     display: true,
                     text: this.options.displayName,
                 },
-                // scales: {
-                //     yAxes: [{
-                //         ticks: {
-                //             suggestedMin:  this.options.minimum * 1.1,
-                //
-                //             // the data maximum used for determining the ticks is Math.max(dataMax, suggestedMax)
-                //             suggestedMax: this.options.maximum * 1.1
-                //         },
-                //         type: this.options.scaleType,
-                //     }]
-                // }
             }
         });
-        (window as any).eulerChart = chart;
+        (window as any)[this.options.chartName] = chart;
+        this.chart = chart;
         return this as EulerMethod;
     };
+
+    public addNewDataset(label: string, data: number[], color: string) {
+        this.chart.data.datasets.push({
+            data,
+            label,
+            backgroundColor: color,
+            borderColor: color,
+            type: 'line',
+            fill: false,
+        });
+        this.chart.update();
+    }
 }

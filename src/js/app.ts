@@ -1,11 +1,13 @@
 import { parseKatex } from './katex/index';
 import { EulerMethod } from './euler/index';
+import { ImprovedEulerMethod } from './improved/index';
+import { RungeKuttaMethod } from './runge-kutta/index';
 
 
 let x0 = 0;
 let y0 = 2;
 let x1 = 6.4;
-let step = 0.25;
+let step = 0.1;
 let integrationConst = 1/3 * (Math.log((y0 - 3) / y0)) - x0 * x0 / 2;
 
 /**
@@ -32,10 +34,38 @@ function solution(x: number) {
 
 document.addEventListener("DOMContentLoaded", function () {
     parseKatex();
+    calculateGraphs();
+});
+
+function calculateGraphs() {
     const euler = new EulerMethod(equation, {
-        displayName: 'Euler\'s method',
         initialValues: { x: x0, y: y0 }
     }).compute({start: x0, end: x1}, step)
-      .draw(document.getElementById('euler'), {})
+        .draw(document.getElementById('euler'), {});
+    (euler.chart.canvas.parentNode as any).style.height = '300px';
 
-});
+    const improvedEulerMethod = new ImprovedEulerMethod(equation, {
+        initialValues: { x: x0, y: y0 }
+    }).compute({start: x0, end: x1}, step);
+
+    const rungeKuttaMethod = new RungeKuttaMethod(equation, {
+        initialValues: { x: x0, y: y0 }
+    }).compute({start: x0, end: x1}, step);
+
+    euler.addNewDataset(
+        'Improved Euler\'s method',
+        improvedEulerMethod.yCoords,
+        '#dd6f00');
+
+    euler.addNewDataset(
+        'Runge-Kutta\'s method',
+        improvedEulerMethod.yCoords,
+        '#ce3b4d');
+
+    euler.addNewDataset(
+        'Exact',
+        euler.xCoords.map((x) => solution(x)),
+        '#00ac23');
+    console.log(euler.xCoords.map((x) => solution(x)));
+    euler.chart.update();
+}

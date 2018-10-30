@@ -1,8 +1,10 @@
 import { ChartOptions } from "chart.js";
+import * as Chart from 'chart.js';
 
 export interface IMethod {
     xCoords: number[];
     yCoords: number[];
+    chart: Chart;
 
     /**
      * Equation to be computed
@@ -36,6 +38,7 @@ export interface IMethod {
 
 export interface IMethodOptions {
     displayName?: string;
+    chartName?: string;
     initialValues: { x: number; y: number };
     minimum?: number;
     maximum?: number;
