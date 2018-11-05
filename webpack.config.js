@@ -6,7 +6,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/main.ts',
+    entry: {
+        index: './src/js/views/index/index.ts',
+        report: './src/js/views/report/report.ts',
+    },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
@@ -20,11 +23,18 @@ module.exports = {
     },
     plugins: [
         new ManifestPlugin(),
-        new CleanWebpackPlugin(['dist']),
+        // new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Differential equations project',
             filename: 'index.html',
-            template: 'src/index.html',
+            template: 'src/js/views/index/index.html',
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Report',
+            filename: 'report.html',
+            template: 'src/js/views/report/report.html',
+            chunks: ['report']
         }),
         new CopyWebpackPlugin([ { from: 'src/assets', to: './' } ]),
         new webpack.NamedModulesPlugin(),
@@ -66,7 +76,7 @@ module.exports = {
             }]
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     }
 };

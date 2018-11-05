@@ -15,11 +15,15 @@ export interface IMethod {
     options: IMethodOptions;
 
     /**
-     * Initializes method of computing
-     * @param equation to be computed
-     * @param options that specifies further behaviour of method
+     * Updates options
+     * @param new options
      */
-    init?: (equation: (x: number, y: number) => number, options?: IMethodOptions) => IMethod;
+    updateOptions: (options: IMethodOptions) => IMethod;
+
+    /**
+     * Resets graph
+     */
+    reset: () => IMethod;
 
     /**
      * Computes the graph of equation with given parameters
@@ -37,6 +41,7 @@ export interface IMethod {
 }
 
 export interface IMethodOptions {
+    graphTitle?: string;
     displayName?: string;
     chartName?: string;
     initialValues: { x: number; y: number };

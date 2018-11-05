@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Differential equations course project</title>
+    <script type="application/javascript">
+        window.onload = function() {
+            document.getElementById("loading").style.display = "none";
+            document.body.classList.add('show');
+        }
+    </script>
+    <style rel="stylesheet">body { width: 100vw; min-height: 100vh; background: #F7F7F7; overflow: hidden } #loading { position: absolute; left: 50%; top: 50%; margin-left: -20px; margin-top: -20px; } .spinner { margin: auto; width: 40px; height: 40px; position: relative; } .cube1, .cube2 { background-color: #8859bf; width: 15px; height: 15px; position: absolute; top: 0; left: 0; -webkit-animation: sk-cubemove 1.8s infinite ease-in-out; animation: sk-cubemove 1.8s infinite ease-in-out; } .cube2 { -webkit-animation-delay: -0.9s; animation-delay: -0.9s; } @-webkit-keyframes sk-cubemove { 25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) } 50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) } 75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) } 100% { -webkit-transform: rotate(-360deg) } } @keyframes sk-cubemove { 25% { transform: translateX(42px) rotate(-90deg) scale(0.5); -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5); } 50% { transform: translateX(42px) translateY(42px) rotate(-179deg); -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg); } 50.1% { transform: translateX(42px) translateY(42px) rotate(-180deg); -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg); } 75% { transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5); -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5); } 100% { transform: rotate(-360deg); -webkit-transform: rotate(-360deg); } }</style>
+    <link rel="stylesheet" href="/katex/katex.min.css"
+          integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+</head>
+<body>
+<div id="loading">
+    <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div>
+</div>
+<div id="main" class="main" style="opacity: 0; height: 100vh; overflow: hidden;">
+    <div class="navbar-extended">
+        <nav class="navbar navbar-expand main-nav">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    Differential Equations
+                </a>
+                <div class="collapse navbar-collapse">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="/">
+                            Graphs
+                        </a>
+                        <a class="nav-item nav-link" href="/report.html">
+                            Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="page">
+        <div class="container">
+            <div class="row">
+                <div class="content">
+                    <h3 style="margin-top: 50px">Graphical representation</h3>
+                    <p class="math">
+                        We were given an equation $y'=-2y+4x$
+                        and inital values $x_0=0$, $y_0=0$
+                        and $X=3$
+                    </p>
+                    <p>
+                        This is a first order separable ODE that has a general solution in from of:
+                        <span class="math block">
+                            $y=\frac{2xe^{2x}-e^{2x}+c_1}{e^{2x}}$
+                        </span>
+                    </p>
+                    <p>
+                        Let's build an approximation using:
+                    </p>
+                    <ol>
+                        <li>Euler's method</li>
+                        <li>Improved Euler's method</li>
+                        <li>Runge-Kutta method</li>
+                    </ol>
+                    <div class="chart-container">
+                        <canvas id="euler"></canvas>
+                    </div>
+                    <form id="initial-values">
+                        <p class="math calculations">
+                            You may specify the initial values to render different graph
+                            $x_0=$<input type="text" class="masked katex"
+                                         maxlength="8" data-mask="^\d+[.,]{0,1}\d*$"
+                                         value="0" id="initialX0"/>
+                            $,\ y_0=$<input type="text" class="masked katex"
+                                            maxlength="8" data-mask="^\d+[.,]{0,1}\d*$"
+                                            value="0" id="initialY0"/>
+                            $,\ X=$<input type="text" class="masked katex"
+                                          maxlength="8" data-mask="^\d+[.,]{0,1}\d*$"
+                                          value="3" id="initialX1"/>
+                            $,\ step=$<input type="text" class="masked katex"
+                                          maxlength="8" data-mask="^\d+[.,]{0,1}\d*$"
+                                          value="0.1" id="step"/>
+                            <input type="submit" class="btn btn-primary btn-sm" value="Calculate" />
+                        </p>
+                    </form>
+                    <div class="chart-container">
+                        <canvas id="globalErrors"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

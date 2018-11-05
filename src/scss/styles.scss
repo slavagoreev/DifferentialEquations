@@ -38,6 +38,19 @@ html, body {
   @include box-sizing(border-box);
 }
 
+#main {
+  @include transition(opacity .5s ease-in);
+}
+body.show {
+  overflow: auto !important;
+
+  #main {
+    opacity: 1 !important;
+    overflow: initial !important;
+    height: auto !important;
+  }
+}
+
 .page {
   display: flex;
   width: 100%;
@@ -63,6 +76,33 @@ html, body {
   .katex-display {
     display: block;
     margin: 15px 0;
+  }
+}
+.chart-container {
+  position: relative;
+  height: 400px;
+  width:100%;
+}
+input.masked {
+  background: no-repeat;
+  border: 1px solid #cbaeef;
+  padding: 1px 3px;
+  margin: 1px 0 1px 5px;
+  max-width: 150px;
+  outline: none !important;
+  font: normal 1.21em KaTeX_Main, 'Times New Roman', serif;
+}
+input.masked::-webkit-inner-spin-button,
+input.masked::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.calculations {
+  line-height: 60px !important;
+
+  .btn {
+    margin-top: -4px;
+    margin-left: 10px;
   }
 }
 

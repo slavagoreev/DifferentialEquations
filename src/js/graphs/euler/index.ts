@@ -1,5 +1,5 @@
 import * as Chart from 'chart.js';
-import { IMethod, IMethodOptions } from '../models/method.model';
+import { IMethod, IMethodOptions } from '../../models/method.model';
 import { ChartOptions } from 'chart.js';
 import { ChartDataSets } from 'chart.js';
 
@@ -10,6 +10,7 @@ export class EulerMethod implements IMethod {
 
     equation: (x: number, y: number) => number;
     options: IMethodOptions = {
+        graphTitle: 'Comparison between methods. You may click on the label to eliminate some line',
         displayName: 'Euler\'s method',
         chartName: 'eulerChart',
         initialValues: { x: 0, y: 0 },
@@ -23,6 +24,23 @@ export class EulerMethod implements IMethod {
         if (options)
             this.options = {...this.options, ...options};
     }
+
+    public updateOptions(options: IMethodOptions) {
+        this.options = {...this.options, ...options};
+        return this as EulerMethod;
+    }
+
+    public reset() {
+        if (this.chart) {
+            this.chart.destroy();
+            this.chart = null;
+        }
+        this.xCoords = [];
+        this.yCoords = [];
+        return this as EulerMethod;
+
+    }
+
     public compute(interval: { start: number; end: number; }, step: number) {
         for (let i = interval.start; i <= interval.end; i += step) {
             this.xCoords.push(+i);
@@ -54,7 +72,7 @@ export class EulerMethod implements IMethod {
     }
 
     public draw(ctx: any, options: ChartOptions) {
-        const chart = new Chart(ctx, {
+        this.chart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: this.xCoords.map((num) => num.toFixed(1)),
@@ -71,12 +89,10 @@ export class EulerMethod implements IMethod {
                 maintainAspectRatio: false,
                 title: {
                     display: true,
-                    text: this.options.displayName,
+                    text: this.options.graphTitle,
                 },
             }
         });
-        (window as any)[this.options.chartName] = chart;
-        this.chart = chart;
         return this as EulerMethod;
     };
 
